@@ -11,15 +11,15 @@ NAME = $(CLIENT) $(SERVER)
 
 all: $(NAME)
 
-	cc $(FLAGSS) server.c -o $(SERVER)
-	cc $(FLAGSS) client.c -o $(CLIENT)
+	@cc $(FLAGSS) server.c -o $(SERVER)
+	@cc $(FLAGSS) client.c -o $(CLIENT)
 	@echo $(GREEN0)Try this is it works
 
 clean:
-	@echo $(CYAN)Don't forget to add the ft_printf
+	@echo $(CYAN) Do not forget to add the ft_printf
 
 fclean:
-	rm -rf $(SERVER) $(CLIENT)
+	@rm -rf $(SERVER) $(CLIENT)
 	@echo $(YELLOW)the obj removed
 
 re: fclean all
