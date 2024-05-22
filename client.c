@@ -29,9 +29,12 @@ bool check_dip(char *dip)
 int main(int ac, char **av)
 {
     char *dip;
-    char *message;
+    // char *message;
     dip = av[1];
-    printf("this is the dip: %s\n", dip);
+    int pad;
+    pad = getpid();
+    printf("this is the pad: %d\n", pad);
+
     if (ac != 3)
         printf("ARGUMENT ERROR 😑");
     else if( !check_dip(dip))
