@@ -7,7 +7,7 @@ RED = "\033[0;31m"
 
 FLAGSS = -Wall -Wextra -Werror
 SERVER = server
-CLIENT = client 
+CLIENT = client
 NAME = $(CLIENT) $(SERVER)
 PRINTF = libftprintf.a
 
