@@ -14,8 +14,8 @@ PRINTF = libftprintf.a
 all: $(NAME)
 
 $(NAME): $(PRINTF)
-	@cc $(FLAGSS) server.c -o $(SERVER)
-	@cc $(FLAGSS) client.c -o $(CLIENT)
+	@cc $(FLAGSS) server.c $(PRINTF) -o $(SERVER)
+	@cc $(FLAGSS) client.c $(PRINTF) -o $(CLIENT)
 	@echo $(GREEN0)Try this is it works
 
 $(PRINTF):

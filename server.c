@@ -6,7 +6,7 @@
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:47:10 by saait-si          #+#    #+#             */
-/*   Updated: 2024/05/27 11:47:45 by saait-si         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:20:19 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void function(int sig_end)
         bit = 0;
         character = 0;
     }
-
 }
 int main()
 {
