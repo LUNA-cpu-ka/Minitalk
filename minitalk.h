@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "./pri/ft_printf.h"
+#include "pri/ft_printf.h"
+#include <ctype.h>
 
 #endif

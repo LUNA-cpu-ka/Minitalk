@@ -6,26 +6,27 @@
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 09:47:10 by saait-si          #+#    #+#             */
-/*   Updated: 2024/05/26 14:49:03 by saait-si         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:47:45 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-void function(int end)
+void function(int sig_end)
 {
     static int bit;
     static char character;
     
-    bit <<= 1;
-    if (end == SIGUSR1)
+    character <<= 1;
+    if (sig_end == SIGUSR1)
         character |= 1;
     bit++;
-    while (bit == 8)
+    if (bit == 8)
     {
         write(1,&character,1);
         bit = 0;
         character = 0;
     }
+
 }
 int main()
 {

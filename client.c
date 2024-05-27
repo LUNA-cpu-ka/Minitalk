@@ -12,79 +12,164 @@
 /* ************************************************************************** */
 
 // #include "minitalk.h"
-// void *check_msg(char *msg)
+// int	ft_isdigit(char *str)
 // {
-//     int i;
-//     i = 0;
-//     if(msg[i] > 65 && msg[i] < 90)
-//     {
-//         while (msg[i])
-//             i++;
-//     }
-    
-    
-// }
-// bool check_dip(char *dip)
-// {
-//     int i;
-//     i = 0;
-//     while (dip[i] != '\0')
-//     {
-//         while (dip[i] < '0' || dip[i] > '9')
-//             return false;
-//         i++;
-//     }
-
-//     return true;
+// 	while (*str)
+// 	{
+// 		if (*str < '0' || *str > '9')
+// 			return (0);
+// 		str++;
+// 	}
+// 	return (1);
 // }
 
-// int main(int ac, char **av)
+// void	send_signal(int pid, char c)
 // {
-//     char *dip;
-//     // char *message;
-//     dip = av[1];
-//     int pad;
-//     pad = getpid();
-//     printf("this is the pad: %d\n", pad);
+// 	int	i;
 
-//     if (ac != 3)
-//         printf("ARGUMENT ERROR 😑");
-//     else if( !check_dip(dip))
-//         printf("YOU NEED A DIP code  😑");
-//     else 
-//         printf("Koulchi howa hadak ! ✅");
-//     return(0);
+// 	i = 7;
+// 	while (i >= 0)
+// 	{
+// 		if ((c >> i) & 1)
+// 			kill(pid, SIGUSR1);
+// 		else
+// 			kill(pid, SIGUSR2);
+// 		usleep(400);
+// 		i--;
+// 	}
 // }
+
+// int	main(int argc, char *argv[])
+// {
+// 	char	*msg;
+// 	int		pid;
+// 	int		i;
+
+// 	if (argc != 3 || !ft_isdigit(argv[1]))
+// 	{
+// 		printf("\nError accured! Either too muh arguments or invalid PID\n");
+// 		return (0);
+// 	}
+// 	pid = atoi(argv[1]);
+// 	msg = argv[2];
+// 	i = 0;
+// 	while (msg[i])
+// 	{
+// 		send_signal(pid, msg[i]);
+// 		i++;
+// 	}
+// }
+
+
+
+
+
+
+
+
 
 #include "minitalk.h"
-void send_char(int pid, char c)
+#include "pri/ft_printf.h"
+
+int main()
 {
-    for (int i = 0; i < 8; i++)
-    {
-        if (c & (1 << i))
-            kill(pid, SIGUSR1);
-        else
-            kill(pid, SIGUSR2);
-        usleep(100);  // Sleep for a short period to ensure the signal is processed
-    }
+    // if (argc == 3)
+    // {
+    //     printf("Dyalhom");
+    // }
+    // else
+        printf("testos");
 }
 
-int main(int argc, char **argv)
-{
-    // ft_printf("ft_printf raha 5dama:");
-    if (argc != 3)
-    {
-        fprintf(stderr, "Usage: %s <PID> <message>\n", argv[0]);
-        return 1;
-    }
 
-    int pid = atoi(argv[1]);
-    char *message = argv[2];
 
-    while (*message)
-    {
-        send_char(pid, *message);
-        message++;
-    }
-    return 0;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// int main
+// check how many args you have they have to be just 3 of them 
+// if there is more or less return a perror
+// check if the arg[1] is number 
+// store the masssage in arg[2] of the user
+// create a function that take the 2 or 3 parameter as you want to send the message and crept it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
