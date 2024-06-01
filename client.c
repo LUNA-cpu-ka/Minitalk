@@ -6,11 +6,14 @@
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:43:11 by saait-si          #+#    #+#             */
-/*   Updated: 2024/05/27 17:51:30 by saait-si         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:51:41 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+#include <stdio.h>
+// handling -1 case ;
+// handling reserved pid (1 - 10)
 
 int	ft_isdigit(char *str)
 {
@@ -21,6 +24,18 @@ int	ft_isdigit(char *str)
 		str++;
 	}
 	return (1);
+}
+
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (str1[i] && str2[i] && str1[i] == str2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }
 
 int	ft_atoi(const char *str)
@@ -52,36 +67,42 @@ int	ft_atoi(const char *str)
 
 void	send_signal(int pid, char byte)
 {
-	int	i;
+	int	shift;
 
-	i = 7;
-	while (i >= 0)
+	shift = 7;
+	while (shift >= 0)
 	{
-		if ((byte >> i) & 1)
+		if ((byte >> shift) & 1)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		usleep(400);
-		i--;
+		shift--;
 	}
 }
-
-int	main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-	char	*msg;
-	int		pid;
-	int		i;
+    char    *msg;
+    int     pid;
+    int     i;
 
-	if (argc != 3 || !ft_isdigit(argv[1]))
+    if (argc != 3 || !ft_isdigit(argv[1]))
+    {
+        ft_printf("CHECK YOUR ARGUMENTS 👾");
+        return(0);
+    }
+    pid = ft_atoi(argv[1]);
+	if (pid <= '0' && pid <= 10)
 	{
-		ft_printf("CHECK YOUR ARGUMENTS 👾");
+		ft_printf("From 0 to 10 are typically reserved by the kernel for special system processes 👾");
+		return 0;
 	}
-	pid = ft_atoi(argv[1]);
-	msg = argv[2];
-	i = 0;
-	while (msg[i])
-	{
-		send_signal(pid, msg[i]);
-		i++;
-	}
+    msg = argv[2];
+    i = 0;
+    while (msg[i])
+    {
+        send_signal(pid, msg[i]);
+        i++;
+    }
+    return (0);
 }

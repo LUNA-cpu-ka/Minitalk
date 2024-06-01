@@ -21,11 +21,12 @@ void	function(int sig_end)
 	if (sig_end == SIGUSR1)
 		character |= 1;
 	bit++;
-	if (bit == 8)
+	// garbege value  
+	if (character && bit == 8) // !c 
 	{
-		write(1, &character, 1);
-		bit = 0;
-		character = 0;
+		write(1, &character, 1);   //write(1,\n,1)
+		bit = 0;                  // bit = 0;
+		character = 0;// c = 0
 	}
 }
 
@@ -34,8 +35,8 @@ int	main(void)
 	int		pid;
 
 	pid = getpid();
-	printf("YOUR CLIENT PID'S: %d\n", pid);
-	printf("Please wait for client to write the message for you 👻\n");
+	ft_printf("YOUR SERVER PID'S: %d\n", pid);
+	ft_printf("Please wait for client to write the message for you 👻\n");
 	signal(SIGUSR1, function);
 	signal(SIGUSR2, function);
 	while (1)

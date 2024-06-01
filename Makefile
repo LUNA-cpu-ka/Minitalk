@@ -2,7 +2,6 @@ RED = "\033[0;31m"
 GREEN0= "\033[32m"
 RED = "\033[0;31m"
 BLUE = "\033[34m"
-BLINKIN = 
 
 FLAGSS = -Wall -Wextra -Werror
 SERVER = server
@@ -13,7 +12,7 @@ PRINTF = libftprintf.a
 all: $(NAME)
 
 $(NAME): $(PRINTF)
-	@echo $(BLUE) Making server and client ⚙️ ...
+	@echo $(NOT)$(BLUE) Making server and client ⚙️ ...
 	@cc $(FLAGSS) server.c $(PRINTF) -o $(SERVER)
 	@cc $(FLAGSS) client.c $(PRINTF) -o $(CLIENT)
 
@@ -23,14 +22,14 @@ $(PRINTF):
 	@mv pri/libftprintf.a .
 
 clean:
-	@echo $(RED) Removing printf"'"s object files 👾 ...
+	@echo $(RED) Removing printf"'"s object files 👾👾👾 ...
 	@make -C pri clean
 	@rm -rf $(PRINTF)
 
 fclean: clean
 	@rm -rf $(SERVER) $(CLIENT) $(PRINTF)
 	@echo $(RED) Removing minitalk"'"s object files 👾 ...
-	@echo "\033[5m"$(GREEN0) ✨ Done cleaning ✨
+	@echo $(GREEN0) ✨ Done cleaning ✨
 
 re: fclean all
 
