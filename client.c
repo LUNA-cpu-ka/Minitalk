@@ -15,23 +15,35 @@
 void	send_signal(int pid, char byte)
 {
 	int	shift;
+    int a;
 
 	shift = 7;
 	while (shift >= 0)
 	{
 		if ((byte >> shift) & 1)
-			kill(pid, SIGUSR1);
+			a = kill(pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
+			a = kill(pid, SIGUSR2);
 		usleep(400);
 		shift--;
+        if (a == -1)
+            exit(write(2, "Error\n", 6));
 	}
 }
+
+void ft_recieve(int a)
+{
+    printf("he");
+    if (a == SIGUSR2)
+        ft_printf("SUCCESS\n");
+}
+
 int main(int argc, char *argv[])
 {
     char    *msg;
     int     pid;
     int     i;
+    char a = '\0';
 
     if (argc != 3 || !ft_isdigit(argv[1]))
     {
@@ -46,10 +58,13 @@ int main(int argc, char *argv[])
 	}
     msg = argv[2];
     i = 0;
+    signal(SIGUSR2, ft_recieve);
     while (msg[i])
     {
         send_signal(pid, msg[i]);
         i++;
+
     }
+    send_signal(pid, a);
     return (0);
 }
