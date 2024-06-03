@@ -6,15 +6,16 @@ BLUE = "\033[34m"
 FLAGSS = -Wall -Wextra -Werror
 SERVER = server
 CLIENT = client
-NAME = $(CLIENT) $(SERVER)
+FUNCTION = function
+NAME = $(CLIENT) $(SERVER) 
 PRINTF = libftprintf.a
 
 all: $(NAME)
 
 $(NAME): $(PRINTF)
-	@echo $(NOT)$(BLUE) Making server and client ⚙️ ...
+	@echo $(BLUE) Making server and client ⚙️ ...
+	@cc $(FLAGSS) client.c  functions.c $(PRINTF) -o $(CLIENT)
 	@cc $(FLAGSS) server.c $(PRINTF) -o $(SERVER)
-	@cc $(FLAGSS) client.c $(PRINTF) -o $(CLIENT)
 
 $(PRINTF):
 	@echo $(BLUE) Making printf ⚙️ ...

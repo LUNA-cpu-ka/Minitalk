@@ -21,7 +21,8 @@
 # include "pri/ft_printf.h"
 # include <ctype.h>
 
-int	ft_isdigit(char *str);
 int	ft_atoi(const char *str);
+int	ft_isdigit(char *str);
+
 
 #endif

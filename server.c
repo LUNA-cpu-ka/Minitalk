@@ -21,7 +21,7 @@ void	function(int sig_end)
 	if (sig_end == SIGUSR1)
 		character |= 1;
 	bit++;
-	// garbege value  
+	
 	if (character && bit == 8) // !c 
 	{
 		write(1, &character, 1);   //write(1,\n,1)
