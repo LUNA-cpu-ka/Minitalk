@@ -1,21 +1,29 @@
+
+#Variables:
+CC = cc
+CFLAGSS = -Wall -Wextra -Werror
+
+#Files:
+SERVER = server
+CLIENT = client
+NAME = $(CLIENT) $(SERVER)
+
+#Libarary:
+PRINTF = libftprintf.a
+
+#Colors:
 RED = "\033[0;31m"
-GREEN0= "\033[32m"
+GREEN0 = "\033[32m"
 RED = "\033[0;31m"
 BLUE = "\033[34m"
 
-FLAGSS = -Wall -Wextra -Werror
-SERVER = server
-CLIENT = client
-FUNCTION = function
-NAME = $(CLIENT) $(SERVER) 
-PRINTF = libftprintf.a
 
-all: $(NAME)
+all: $(NAME) $(PRINTF)
 
 $(NAME): $(PRINTF)
 	@echo $(BLUE) Making server and client ⚙️ ...
-	@cc $(FLAGSS) client.c  functions.c $(PRINTF) -o $(CLIENT)
-	@cc $(FLAGSS) server.c $(PRINTF) -o $(SERVER)
+	@$(CC) $(CFLAGSS) server.c $(PRINTF) -o $(SERVER)
+	@$(CC) $(CFLAGSS) client.c functions.c  $(PRINTF) -o $(CLIENT)
 
 $(PRINTF):
 	@echo $(BLUE) Making printf ⚙️ ...
@@ -34,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.SILENT: all clean fclean re

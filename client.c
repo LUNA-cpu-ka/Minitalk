@@ -31,19 +31,18 @@ void	send_signal(int pid, char byte)
 	}
 }
 
-void ft_recieve(int a)
-{
-    printf("he");
-    if (a == SIGUSR2)
-        ft_printf("SUCCESS\n");
-}
+// void ft_recieve(int a)
+// {
+//     printf("he");
+//     if (a == SIGUSR2)
+//         ft_printf("SUCCESS\n");
+// }
 
 int main(int argc, char *argv[])
 {
     char    *msg;
     int     pid;
     int     i;
-    char a = '\0';
 
     if (argc != 3 || !ft_isdigit(argv[1]))
     {
@@ -51,20 +50,16 @@ int main(int argc, char *argv[])
         return(0);
     }
     pid = ft_atoi(argv[1]);
-	if (pid <= '1' && pid <= 10)
+	if ( 0 <= pid && pid <= 10)
 	{
-		ft_printf("From 1 to 10 are typically reserved by the kernel for special system processes 👾");
-		return 0;
+		ft_printf("From 0 to 10 are typically reserved by the kernel for special system processes 👾");
+		return (0);
 	}
     msg = argv[2];
-    i = 0;
+    i = -1;
     signal(SIGUSR2, ft_recieve);
-    while (msg[i])
-    {
+    while (msg[++i])
         send_signal(pid, msg[i]);
-        i++;
-
-    }
-    send_signal(pid, a);
+    send_signal(pid, '\0');
     return (0);
 }

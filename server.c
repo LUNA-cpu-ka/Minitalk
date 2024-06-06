@@ -21,7 +21,7 @@ void	function(int sig_endm, siginfo_t *info, void *vp)
 
 	if (pid != info->si_pid)
 	{
-		bit = 0;                  // bit = 0;
+		bit = 0;                 
 		character = 0;
 		pid = info->si_pid;
 	}
@@ -30,14 +30,13 @@ void	function(int sig_endm, siginfo_t *info, void *vp)
 		character |= 1;
 	bit++;
 	
-	if (character && bit == 8) // !c 
-	{
+	if (character && bit == 8) {
 		if (character == '\0')
 			if (kill(pid, SIGUSR2))
 				exit(write(2, "Error\n",6));
-		write(1, &character, 1);   //write(1,\n,1)
-		bit = 0;                  // bit = 0;
-		character = 0;// c = 0
+		write(1, &character, 1);   
+		bit = 0;                 
+		character = 0;
 	}
 
 }
@@ -55,8 +54,6 @@ int	main(void)
 	sigaction(SIGUSR1, &sig, NULL);
 	sigaction(SIGUSR2, &sig, NULL);
 	while (1)
-	{
 		pause();
-	}
 	return (0);
 }
