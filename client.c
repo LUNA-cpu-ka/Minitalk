@@ -15,7 +15,7 @@
 void	send_signal(int pid, char byte)
 {
 	int	shift;
-    int a;
+	int	a;
 
 	shift = 7;
 	while (shift >= 0)
@@ -26,8 +26,8 @@ void	send_signal(int pid, char byte)
 			a = kill(pid, SIGUSR2);
 		usleep(400);
 		shift--;
-        if (a == -1)
-            exit(write(2, "Error\n", 6));
+		if (a == -1)
+			exit(write(2, "Error\n", 6));
 	}
 }
 
@@ -38,28 +38,29 @@ void	send_signal(int pid, char byte)
 //         ft_printf("SUCCESS\n");
 // }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-    char    *msg;
-    int     pid;
-    int     i;
+	char	*msg;
+	int		pid;
+	int		i;
 
-    if (argc != 3 || !ft_isdigit(argv[1]))
-    {
-        ft_printf("CHECK YOUR ARGUMENTS 👾");
-        return(0);
-    }
-    pid = ft_atoi(argv[1]);
-	if ( 0 <= pid && pid <= 10)
+	if (argc != 3 || !ft_isdigit(argv[1]))
 	{
-		ft_printf("From 0 to 10 are typically reserved by the kernel for special system processes 👾");
+		ft_printf("CHECK YOUR ARGUMENTS 👾");
 		return (0);
 	}
-    msg = argv[2];
-    i = -1;
-    signal(SIGUSR2, ft_recieve);
-    while (msg[++i])
-        send_signal(pid, msg[i]);
-    send_signal(pid, '\0');
-    return (0);
+	pid = ft_atoi(argv[1]);
+	if (0 <= pid && pid <= 10)
+	{
+		ft_printf("From 0 to 10 are typically reserved by the kernel");
+		ft_printf("for special system processes 👾\n");
+		return (0);
+	}
+	msg = argv[2];
+	i = -1;
+	signal(SIGUSR2, ft_recieve);
+	while (msg[++i])
+		send_signal(pid, msg[i]);
+	send_signal(pid, '\0');
+	return (0);
 }

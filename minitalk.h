@@ -6,7 +6,7 @@
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:41:31 by saait-si          #+#    #+#             */
-/*   Updated: 2024/05/27 17:45:55 by saait-si         ###   ########.fr       */
+/*   Updated: 2024/06/06 01:58:29 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@
 
 int	ft_atoi(const char *str);
 int	ft_isdigit(char *str);
-
 
 #endif

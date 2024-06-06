@@ -16,12 +16,12 @@ void	function(int sig_endm, siginfo_t *info, void *vp)
 {
 	static int	bit;
 	static char	character;
-	static int pid;
-	(void)vp;
+	static int	pid;
 
+	(void)vp;
 	if (pid != info->si_pid)
 	{
-		bit = 0;                 
+		bit = 0;
 		character = 0;
 		pid = info->si_pid;
 	}
@@ -29,22 +29,21 @@ void	function(int sig_endm, siginfo_t *info, void *vp)
 	if (sig_endm == SIGUSR1)
 		character |= 1;
 	bit++;
-	
-	if (character && bit == 8) {
+	if (character && bit == 8)
+	{
 		if (character == '\0')
 			if (kill(pid, SIGUSR2))
-				exit(write(2, "Error\n",6));
-		write(1, &character, 1);   
-		bit = 0;                 
+				exit(write(2, "Error\n", 6));
+		write(1, &character, 1);
+		bit = 0;
 		character = 0;
 	}
-
 }
 
 int	main(void)
 {
-	int		pid;
-	struct	sigaction sig;
+	int					pid;
+	struct sigaction	sig;
 
 	sig.sa_sigaction = function;
 	sig.sa_flags = SA_SIGINFO;
