@@ -8,6 +8,10 @@ SERVER = server
 CLIENT = client
 NAME = $(CLIENT) $(SERVER)
 
+SBERVER = server_bonus
+CBLIENT = client_bonus
+NBAME = $(CBLIENT) $(SBERVER)
+
 #Libarary:
 PRINTF = libftprintf.a
 
@@ -25,6 +29,13 @@ $(NAME): $(PRINTF)
 	@$(CC) $(CFLAGSS) server.c $(PRINTF) -o $(SERVER)
 	@$(CC) $(CFLAGSS) client.c functions.c  $(PRINTF) -o $(CLIENT)
 
+bonus: $(NBAME) $(PRINTF)
+
+$(NBAME): $(PRINTF)
+	@echo $(BLUE) Making server and client bonus⚙️ ...
+	@$(CC) $(CFLAGSS) server_bonus.c $(PRINTF) -o $(SBERVER)
+	@$(CC) $(CFLAGSS) client_bonus.c functions.c  $(PRINTF) -o $(CBLIENT)
+
 $(PRINTF):
 	@echo $(BLUE) Making printf ⚙️ ...
 	@make -C pri 
@@ -36,10 +47,10 @@ clean:
 	@rm -rf $(PRINTF)
 
 fclean: clean
-	@rm -rf $(SERVER) $(CLIENT) $(PRINTF)
+	@rm -rf $(SERVER) $(CLIENT) $(PRINTF) $(SBERVER) $(CBLIENT)
 	@echo $(RED) Removing minitalk"'"s object files 👾 ...
 	@echo $(GREEN0) ✨ Done cleaning ✨
 
-re: fclean all
+re: fclean all bonus
 
-.SILENT: all clean fclean re
+.PHONY: all clean fclean re

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 17:43:11 by saait-si          #+#    #+#             */
-/*   Updated: 2024/06/07 23:29:31 by saait-si         ###   ########.fr       */
+/*   Created: 2024/06/07 23:21:47 by saait-si          #+#    #+#             */
+/*   Updated: 2024/06/07 23:28:29 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	send_signal(int pid, char byte)
 {
@@ -29,6 +29,12 @@ void	send_signal(int pid, char byte)
 		if (a == -1)
 			exit(write(2, "Error\n", 6));
 	}
+}
+
+void ft_recieve(int a)
+{
+    if (a == SIGUSR2)
+        ft_printf("SUCCESS\n");
 }
 
 int	main(int argc, char *argv[])
@@ -53,6 +59,10 @@ int	main(int argc, char *argv[])
 	i = -1;
 	
 	while (msg[++i])
+	{
+		signal(SIGUSR2, ft_recieve);
 		send_signal(pid, msg[i]);
+	}
+	send_signal(pid, '\0');
 	return (0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 09:47:10 by saait-si          #+#    #+#             */
+/*   Created: 2024/06/07 23:21:36 by saait-si          #+#    #+#             */
 /*   Updated: 2024/06/07 23:22:32 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	function(int sig_endm, siginfo_t *info, void *vp)
 {
@@ -29,8 +29,11 @@ void	function(int sig_endm, siginfo_t *info, void *vp)
 	if (sig_endm == SIGUSR1)
 		character |= 1;
 	bit++;
-	if (character && bit == 8)
+	if (bit == 8)
 	{
+		if (character == '\0')
+			if (kill(pid, SIGUSR2))
+				exit(write(2, "Error\n", 6));
 		write(1, &character, 1);
 		bit = 0;
 		character = 0;
