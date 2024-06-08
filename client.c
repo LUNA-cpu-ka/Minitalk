@@ -6,7 +6,7 @@
 /*   By: saait-si <saait-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:43:11 by saait-si          #+#    #+#             */
-/*   Updated: 2024/06/07 23:29:31 by saait-si         ###   ########.fr       */
+/*   Updated: 2024/06/08 00:53:53 by saait-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,4 @@ int	main(int argc, char *argv[])
 		send_signal(pid, msg[i]);
 	return (0);
 }
+
