@@ -31,10 +31,10 @@ void	send_signal(int pid, char byte)
 	}
 }
 
-void ft_recieve(int a)
+void	ft_recieve(int a)
 {
-    if (a == SIGUSR2)
-        ft_printf("SUCCESS\n");
+	if (a == SIGUSR2)
+		ft_printf("SUCCESS\n");
 }
 
 int	main(int argc, char *argv[])
@@ -57,7 +57,6 @@ int	main(int argc, char *argv[])
 	}
 	msg = argv[2];
 	i = -1;
-	
 	while (msg[++i])
 	{
 		signal(SIGUSR2, ft_recieve);

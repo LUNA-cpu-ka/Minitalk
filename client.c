@@ -51,9 +51,7 @@ int	main(int argc, char *argv[])
 	}
 	msg = argv[2];
 	i = -1;
-	
 	while (msg[++i])
 		send_signal(pid, msg[i]);
 	return (0);
 }
-

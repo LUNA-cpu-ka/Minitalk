@@ -6,7 +6,6 @@ CFLAGSS = -Wall -Wextra -Werror
 #Files:
 SERVER = server
 CLIENT = client
-NAME = $(CLIENT) $(SERVER)
 
 SBERVER = server_bonus
 CBLIENT = client_bonus
